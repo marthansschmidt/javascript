@@ -45,3 +45,7 @@
 .buttons3:hover{
     background-color: hsl(118, 100%, 56%);
 }
+
+body{
+    background-image: linear-gradient(to right, #ffe5ec, #fb6f92);
+}
