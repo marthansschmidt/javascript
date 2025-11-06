@@ -1,19 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="et">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programmeerimise alused_Märt_Hansschmidt</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>JavaScript</title>
 </head>
 <body>
-  <label id="countLabel">0</label><br>
-  <div id="btnContainer">
-    <button id="decreaseBtn" class="buttons1">decrease</button>
-    <button id="resetBtn" class="buttons2">reset</button>
-    <button id="increaseBtn" class="buttons3">increase</button>
-</div>
+  <h1>Toidukorvi Analüüs</h1>
+  <div id="output"></div>
 
-    <script src="index.js"></script> 
+  <script>
+    let shoppingCart = [
+      { name: "õun", quantity: 4 },
+      { name: "banaan", quantity: 2 },
+      { name: "apelsin", quantity: 5 },
+      { name: "piim", quantity: 1 },
+      { name: "leib", quantity: 2 }
+    ];
+
+    const totalQuantity = shoppingCart.reduce((sum, item) => sum + item.quantity, 0);
+
+    shoppingCart.push({ name: "jogurt", quantity: 3 });
+
+    const apple = shoppingCart.find(item => item.name === "õun");
+    if (apple) {
+      apple.quantity += 3;
+    } else {
+      shoppingCart.push({ name: "õun", quantity: 3 });
+    }
+
+    shoppingCart = shoppingCart.filter(item => item.name !== "banaan");
+
+    const itemNames = shoppingCart.map(item => item.name);
+
+    const hasMilk = shoppingCart.some(item => item.name === "piim");
+
+    shoppingCart.sort((a, b) => b.quantity - a.quantity);
+
+    const output = document.getElementById("output");
+    output.innerHTML = `
+      <p><strong>Kokku tooteid:</strong> ${totalQuantity}</p>
+      <p><strong>Kas piim on olemas?</strong> ${hasMilk}</p>
+      <p><strong>Toodete nimed:</strong> ${itemNames.join(", ")}</p>
+      <h3>Sorteeritud ostukorv:</h3>
+      <ul>
+        ${shoppingCart.map(item => `<li>${item.name} — ${item.quantity} tk</li>`).join("")}
+      </ul>
+    `;
+  </script>
 </body>
 </html>
