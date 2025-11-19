@@ -1,51 +1,84 @@
 <!DOCTYPE html>
 <html lang="et">
-<head>
-  <meta charset="UTF-8">
-  <title>JavaScript</title>
-</head>
-<body>
-  <h1>Toidukorvi Analüüs</h1>
-  <div id="output"></div>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kangelaste meeskond</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Mänguke</h1>
+    </header>
 
-  <script>
-    let shoppingCart = [
-      { name: "õun", quantity: 4 },
-      { name: "banaan", quantity: 2 },
-      { name: "apelsin", quantity: 5 },
-      { name: "piim", quantity: 1 },
-      { name: "leib", quantity: 2 }
-    ];
+    <main>
+      <section class="panel">
+        <h2>Missioonid</h2>
+        <div class="controls">
+          <button class="primary" onclick="showAllHeroes()">
+            Näita kõiki kangelasi
+          </button>
 
-    const totalQuantity = shoppingCart.reduce((sum, item) => sum + item.quantity, 0);
+          <div class="row">
+            <label for="roleSelect"> Näita rolli järgi:</label>
+            <select id="roleSelect" onchange="filterByRole()">
+              <option value="all">Kõik rollid</option>
+              <option value="tank">Tank</option>
+              <option value="raviarst">Raviarst</option>
+              <option value="ründaja">Ründaja</option>
+            </select>
+          </div>
 
-    shoppingCart.push({ name: "jogurt", quantity: 3 });
+          <button onclick="boostTeam()">Lisa kõigile +10 elupunkti</button>
+          <button onclick="showTeamPower()">Arvuta meeskonna kogujõud</button>
+          <button onclick="resetTeam()">🔁 Taasta algne meeskond</button>
 
-    const apple = shoppingCart.find(item => item.name === "õun");
-    if (apple) {
-      apple.quantity += 3;
-    } else {
-      shoppingCart.push({ name: "õun", quantity: 3 });
-    }
+          <button onclick="attackBoss()">
+            Ründa bossi (kõik ründajad teevad kahju)
+          </button>
+          <button onclick="healTanks()">
+            Raviarstid ravivad tanke (+15 hp tankidele)
+          </button>
+        </div>
+      </section>
+      <section class="panel">
+        <h2>Meeskonna ja bossi vaade</h2>
+        <div class="inner">
+          <div class="stats">
+            <div class="card">
+              <div class="label">Kangelasi</div>
+              <div class="value" id="heroCount">0</div>
+            </div>
+            <div class="card">
+              <div class="label">Meeskonna kogujõud</div>
+              <div class="value" id="teamPower">0</div>
+            </div>
+          </div>
 
-    shoppingCart = shoppingCart.filter(item => item.name !== "banaan");
+          <div class="boss">
+            <div class="boss-header">
+              <span class="boss-name" id="bossName">Varju-Boss</span>
+              <span class="boss-hp" id="bossHp">HP: 200</span>
+            </div>
+            <div class="boss-bar">
+              <div
+                class="boss-bar-inner"
+                id="bossBarInner"
+                style="width: 100%"
+              ></div>
+            </div>
+          </div>
 
-    const itemNames = shoppingCart.map(item => item.name);
+          <div id="heroList" class="heroes">
+           
+          </div>
 
-    const hasMilk = shoppingCart.some(item => item.name === "piim");
-
-    shoppingCart.sort((a, b) => b.quantity - a.quantity);
-
-    const output = document.getElementById("output");
-    output.innerHTML = `
-      <p><strong>Kokku tooteid:</strong> ${totalQuantity}</p>
-      <p><strong>Kas piim on olemas?</strong> ${hasMilk}</p>
-      <p><strong>Toodete nimed:</strong> ${itemNames.join(", ")}</p>
-      <h3>Sorteeritud ostukorv:</h3>
-      <ul>
-        ${shoppingCart.map(item => `<li>${item.name} — ${item.quantity} tk</li>`).join("")}
-      </ul>
-    `;
-  </script>
-</body>
+          <div class="log" id="log">
+           
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
 </html>
