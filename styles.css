@@ -1,13 +1,13 @@
 :root {
-  --bg: #050816;
-  --inner-bg: #757c91;
-  --card: #0f172a;
-  --accent: #38bdf8;
-  --accent-soft: rgba(56, 189, 248, 0.15);
-  --text: #e5e7eb;
-  --muted: #9ca3af;
-  --danger: #f97373;
-  --success: #4ade80;
+  --bg: #12121e; 
+  --inner-bg: #2e2e4b; 
+  --card: #1f1f3a; 
+  --accent: #a78bfa; 
+  --accent-soft: rgba(167, 139, 250, 0.15); 
+  --text: #e0e0f0; 
+  --muted: #a0a0c0; 
+  --danger: #ff6b81; 
+  --success: #6be6ff; 
 }
 * {
   box-sizing: border-box;
@@ -42,13 +42,13 @@ main {
 .panel {
   background: var(--inner-bg);
   border-radius: 16px;
-  border: 1px solid rgba(148, 163, 184, 0.25);
+  border: 1px solid rgba(160, 160, 192, 0.4); 
   overflow: hidden;
 }
 .panel h2 {
   margin: 0;
   padding: 12px 16px;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+  border-bottom: 1px solid rgba(160, 160, 192, 0.4);
   font-size: 18px;
 }
 .inner {
@@ -64,21 +64,26 @@ main {
 .controls button {
   background: var(--accent);
   border-radius: 10px;
-  border: 1px solid rgba(148, 163, 184, 0.6);
-  color: var(--text);
+  border: 1px solid rgba(160, 160, 192, 0.6);
+  color: var(--card); 
   padding: 20px 10px;
   font-size: 14px;
   cursor: pointer;
   grid-column: span 2;
 }
+.controls button:hover {
+  filter: brightness(1.1);
+}
 
 button:nth-last-child(2) {
   grid-column: span 3;
   background-color: var(--danger);
+  color: var(--text);
 }
 button:last-child {
   grid-column: span 3;
   background-color: var(--success);
+  color: var(--card); 
 }
 
 .controls button.primary {
@@ -86,23 +91,22 @@ button:last-child {
   border-color: transparent;
   font-weight: 600;
   grid-column: span 3;
+  color: var(--accent); 
 }
 .controls button.primary:hover,
 .row:hover {
-  filter: brightness(175%);
+  filter: brightness(1.75); 
 }
 
 .row select {
   border-radius: 10px;
-  border: 1px solid rgba(148, 163, 184, 0.6);
+  border: 1px solid rgba(160, 160, 192, 0.6);
   color: var(--text);
   background: var(--card);
   padding: 10px;
   cursor: pointer;
 }
-.controls button:hover {
-  filter: brightness(1.05);
-}
+
 
 .controls .row {
   display: flex;
@@ -132,7 +136,7 @@ button:last-child {
   min-width: 120px;
   background: var(--card);
   border-radius: 12px;
-  border: 1px solid rgba(148, 163, 184, 0.6);
+  border: 1px solid rgba(160, 160, 192, 0.6);
   padding: 8px 10px;
   text-align: center;
 }
@@ -151,12 +155,12 @@ button:last-child {
   margin-bottom: 12px;
   padding: 10px;
   border-radius: 12px;
-  border: 1px solid rgba(248, 113, 113, 0.6);
+  border: 1px solid rgba(255, 107, 129, 0.6); 
   background: radial-gradient(
     circle at top,
-    rgba(248, 113, 113, 0.2),
-    #020617 60%
-  );
+    rgba(255, 107, 129, 0.2),
+    #12121e 60%
+  ); 
 }
 .boss-header {
   display: flex;
@@ -176,13 +180,13 @@ button:last-child {
   width: 100%;
   height: 10px;
   border-radius: 999px;
-  background: rgba(30, 64, 175, 0.8);
+  background: rgba(46, 46, 75, 0.8); 
   overflow: hidden;
 }
 .boss-bar-inner {
   height: 100%;
   width: 100%;
-  background: linear-gradient(90deg, #f97373, #fb923c);
+  background: linear-gradient(90deg, var(--danger), #ffaa70); 
   transition: width 0.2s ease-out;
 }
 
@@ -196,7 +200,7 @@ button:last-child {
   background: var(--card);
   border-radius: 12px;
   padding: 10px;
-  border: 1px solid rgba(148, 163, 184, 0.5);
+  border: 1px solid rgba(160, 160, 192, 0.5);
   position: relative;
 }
 .hero-name {
@@ -216,16 +220,16 @@ button:last-child {
 .hero-stats span {
   padding: 2px 6px;
   border-radius: 999px;
-  background: rgba(15, 23, 42, 0.9);
-  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(31, 31, 58, 0.9); 
+  border: 1px solid rgba(160, 160, 192, 0.4);
 }
 .log {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 12px;
-  background: #020617;
+  background: #0d0d17; 
   border-radius: 10px;
   padding: 8px;
-  border: 1px solid rgba(148, 163, 184, 0.5);
+  border: 1px solid rgba(160, 160, 192, 0.5);
   height: 110px;
   overflow: auto;
   white-space: pre-line;

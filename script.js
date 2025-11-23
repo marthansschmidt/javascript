@@ -1,14 +1,14 @@
 const originalHeroes = [
-  { name: "Tugev Tom", role: "tank", hp: 120, power: 25 },
-  { name: "Kaitsev Kai", role: "tank", hp: 110, power: 20 },
-  { name: "Ravi-Riina", role: "raviarst", hp: 80, power: 10 },
-  { name: "Sära-Siim", role: "raviarst", hp: 75, power: 12 },
-  { name: "Noole-Naima", role: "ründaja", hp: 90, power: 30 },
-  { name: "Mõõga-Mari", role: "ründaja", hp: 95, power: 35 },
+  { name: "Rasvanekana74", role: "tank", hp: 120, power: 25 },
+  { name: "Squiks", role: "tank", hp: 110, power: 20 },
+  { name: "xXxSnipersh0txXx", role: "raviarst", hp: 80, power: 10 },
+  { name: "TSM MART TTV", role: "raviarst", hp: 75, power: 12 },
+  { name: "Messi3428", role: "ründaja", hp: 90, power: 30 },
+  { name: "Fak3r-.-", role: "ründaja", hp: 95, power: 35 },
 ];
 
 const originalBoss = {
-  name: "Varju-Kuningas",
+  name: "Kõva Kamakas",
   hp: 200,
   maxHp: 200,
 };
@@ -16,6 +16,7 @@ const originalBoss = {
 
 let heroes = []; 
 let boss = { ...originalBoss }; 
+let bossDefeated = false;
 
 
 const heroListEl = document.getElementById("heroList");
@@ -28,10 +29,19 @@ const bossHpEl = document.getElementById("bossHp");
 const bossBarInner = document.getElementById("bossBarInner");
 
 
-
 function appendLog(message) {
   logEl.textContent += message + "\n";
   logEl.scrollTop = logEl.scrollHeight;
+}
+
+function launchConfetti() {
+    if (typeof confetti === 'function') {
+        confetti({
+            particleCount: 150,
+            spread: 90,
+            origin: { y: 0.6 }
+        });
+    }
 }
 
 function renderHeroes(list) {
@@ -49,6 +59,12 @@ function renderHeroes(list) {
     const statsEl = document.createElement("div");
     const hpSpan = document.createElement("span");
     hpSpan.textContent = "HP: " + hero.hp;
+    
+
+    if (hero.hp <= 30) {
+        hpSpan.style.color = "var(--danger)"; 
+    }
+
     const powerSpan = document.createElement("span");
     powerSpan.textContent = "Power: " + hero.power;
 
@@ -70,10 +86,37 @@ function renderBoss() {
   bossHpEl.textContent = "HP: " + boss.hp;
   const percent = (boss.hp / boss.maxHp) * 100;
   bossBarInner.style.width = Math.max(0, Math.min(100, percent)) + "%";
-  if (boss.hp <= 0) {
-    appendLog("Boss on alistatud!");
+  
+  if (boss.hp <= 0 && !bossDefeated) {
+    appendLog("VICTORY! Boss on alistatud! 🎉");
+    launchConfetti(); 
+    bossDefeated = true; 
+  }
+  if (boss.hp > 0) {
+      bossDefeated = false;
   }
 }
+
+function bossAttack() {
+  if (heroes.length === 0 || boss.hp <= 0) return;
+
+  const target = heroes[Math.floor(Math.random() * heroes.length)];
+
+  const dmg = Math.floor(Math.random() * (40 - 15 + 1)) + 15;
+
+  target.hp = Math.max(0, target.hp - dmg);
+
+  appendLog("Boss ründab: " + target.name + " kaotab " + dmg + " HP");
+
+  const before = heroes.length;
+  heroes = heroes.filter(h => h.hp > 0);
+  if (heroes.length !== before) {
+    appendLog("Kangelane langes lahingus");
+  }
+
+  renderHeroes(heroes);
+}
+
 
 function showAllHeroes() {
   heroes = originalHeroes.map(h => ({ ...h }));
@@ -85,7 +128,8 @@ function showAllHeroes() {
 function filterByRole() {
   const value = roleSelect.value;
   if (value === "all") {
-    showAllHeroes();
+    renderHeroes(heroes); 
+    appendLog("Kuvame kõik kangelased");
   } else {
     const filtered = heroes.filter(hero => hero.role === value);
     renderHeroes(filtered);
@@ -117,20 +161,35 @@ function resetTeam() {
   boss = { ...originalBoss };
   teamPowerEl.textContent = "0";
   logEl.textContent = "";
+  bossDefeated = false; 
   renderHeroes(heroes);
   renderBoss();
   appendLog("Taastasime algse meeskonna ja bossi");
 }
 
 function attackBoss() {
+  if (boss.hp <= 0) {
+    appendLog("Boss on juba alistatud!");
+    return;
+  }
+
   const attackers = heroes.filter(h => h.role === "ründaja");
   const dmg = calcTeamPower(attackers);
   boss.hp = Math.max(0, boss.hp - dmg);
   renderBoss();
   appendLog("Ründajad tegid bossile " + dmg + " kahju");
+
+  if (boss.hp > 0) {
+    bossAttack();
+  }
 }
 
 function healTanks() {
+  if (boss.hp <= 0) {
+    appendLog("Boss on alistatud, ravi pole vajalik!");
+    return;
+  }
+  š
   heroes.forEach(hero => {
     if (hero.role === "tank") {
       hero.hp += 15;
@@ -138,6 +197,10 @@ function healTanks() {
   });
   renderHeroes(heroes);
   appendLog("Raviarstid ravisid tanke (+15 HP)");
+
+  if (boss.hp > 0) {
+    bossAttack();
+  }
 }
 
 
