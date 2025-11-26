@@ -1,85 +1,13 @@
 <!DOCTYPE html>
-<html lang="et">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mängukoobas</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header>
-      <h1>Mängukoobas</h1>
-    </header>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
 
-    <main>
-      <section class="panel">
-        <h2>Missioonid</h2>
-        <div class="controls">
-          <button class="primary" onclick="showAllHeroes()">
-            Näita kõiki kangelasi
-          </button>
+<script src="script.js"></script>
 
-          <div class="row">
-            <label for="roleSelect"> Näita rolli järgi:</label>
-            <select id="roleSelect" onchange="filterByRole()">
-              <option value="all">Kõik rollid</option>
-              <option value="tank">Tank</option>
-              <option value="raviarst">Raviarst</option>
-              <option value="ründaja">Ründaja</option>
-            </select>
-          </div>
-
-          <button onclick="boostTeam()">Lisa kõigile +10 elupunkti</button>
-          <button onclick="showTeamPower()">Arvuta meeskonna kogujõud</button>
-          <button onclick="resetTeam()">🔁 Taasta algne meeskond</button>
-
-          <button onclick="attackBoss()">
-            Ründa bossi (kõik ründajad teevad kahju)
-          </button>
-          <button onclick="healTanks()">
-            Raviarstid ravivad tanke (+15 hp tankidele)
-          </button>
-        </div>
-      </section>
-      <section class="panel">
-        <h2>Meeskonna ja bossi vaade</h2>
-        <div class="inner">
-          <div class="stats">
-            <div class="card">
-              <div class="label">Kangelasi</div>
-              <div class="value" id="heroCount">0</div>
-            </div>
-            <div class="card">
-              <div class="label">Meeskonna kogujõud</div>
-              <div class="value" id="teamPower">0</div>
-            </div>
-          </div>
-
-          <div class="boss">
-            <div class="boss-header">
-              <span class="boss-name" id="bossName">Varju-Boss</span>
-              <span class="boss-hp" id="bossHp">HP: 200</span>
-            </div>
-            <div class="boss-bar">
-              <div
-                class="boss-bar-inner"
-                id="bossBarInner"
-                style="width: 100%"
-              ></div>
-            </div>
-          </div>
-
-          <div id="heroList" class="heroes">
-           
-          </div>
-
-          <div class="log" id="log">
-           
-          </div>
-        </div>
-      </section>
-    </main>
-    <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  </body>
+</body>
 </html>
