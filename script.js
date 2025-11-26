@@ -189,7 +189,7 @@ function healTanks() {
     appendLog("Boss on alistatud, ravi pole vajalik!");
     return;
   }
-  š
+
   heroes.forEach(hero => {
     if (hero.role === "tank") {
       hero.hp += 15;
