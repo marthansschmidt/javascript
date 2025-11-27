@@ -215,54 +215,196 @@
 // console.log(rectangle.height);
 
 
-class Person {
+// class Person {
 
-    constructor(firstName, lastName, age) {
-        this.firstName = firstName; 
-        this.lastName = lastName;
-        this.age = age;
-    }
+//     constructor(firstName, lastName, age) {
+//         this.firstName = firstName; 
+//         this.lastName = lastName;
+//         this.age = age;
+//     }
 
-    set firstName(newFirstName) {
-        if (typeof newFirstName === "string" && newFirstName.trim().length > 0) {
-            this._firstName = newFirstName;
-        } else {
-            console.error("firstName must be a non-empty string");
-        }
-    }
+//     set firstName(newFirstName) {
+//         if (typeof newFirstName === "string" && newFirstName.trim().length > 0) {
+//             this._firstName = newFirstName;
+//         } else {
+//             console.error("firstName must be a non-empty string");
+//         }
+//     }
 
-    set lastName(newLastName) {
-        if (typeof newLastName === "string" && newLastName.trim().length > 0) {
-            this._lastName = newLastName;
-        } else {
-            console.error("lastName must be a non-empty string");
-        }
-    }
+//     set lastName(newLastName) {
+//         if (typeof newLastName === "string" && newLastName.trim().length > 0) {
+//             this._lastName = newLastName;
+//         } else {
+//             console.error("lastName must be a non-empty string");
+//         }
+//     }
 
-    set age(newAge) {
-        if (typeof newAge === "number" && newAge > 0) {
-            this._age = newAge;
-        } else {
-            console.error("age must be a positive number");
-        }
-    }
+//     set age(newAge) {
+//         if (typeof newAge === "number" && newAge > 0) {
+//             this._age = newAge;
+//         } else {
+//             console.error("age must be a positive number");
+//         }
+//     }
 
 
-    get firstName() {
-        return this._firstName;
-    }
+//     get firstName() {
+//         return this._firstName;
+//     }
 
-    get lastName() {
-        return this._lastName;
-    }
+//     get lastName() {
+//         return this._lastName;
+//     }
 
-    get age() {
-        return this._age;
-    }
-}
+//     get age() {
+//         return this._age;
+//     }
+// }
 
-const person = new Person("Spongebob", "Squarepants", 69);
+// const person = new Person("Spongebob", "Squarepants", 69);
 
-console.log(person.firstName);
-console.log(person.lastName);
-console.log(person.age);
+// console.log(person.firstName);
+// console.log(person.lastName);
+// console.log(person.age);
+
+// destructoring
+
+// let a = 1
+// let b = 2
+
+// [a, b] = [b, a];
+
+// console.log(a);
+// console.log(b);
+
+// const colors = ["red", "green", "blue", "black", "white"];
+
+// [colors[0], colors[4]] = [colors[4], colors[0]];
+
+// console.log(colors);
+
+//  const colors = ["red", "green", "blue", "black", "white"];
+
+//  const [firstColor, secondColor, thirdColor, ...extraColors] = colors;
+
+//  console.log(firstColor);
+//  console.log(secondColor);
+//  console.log(thirdColor);
+//  console.log(extraColors);
+
+
+//  const person1 = {
+//     firstName: "Spongebob",
+//     lastName: "Squarepants",
+//     age: 69,
+//     job: "fry cook"
+//  }
+//  const person2 = {
+//     firstName: "Patrick",
+//     lastName: "Star ",
+//     age: 34,
+
+//  }
+//    const {firstName, lastName, age, job} = person2;
+
+//    console.log(firstName);
+//    console.log(lastName);
+//    console.log(age);
+
+// function displayPerson({firstName, lastName, age, job="unemployed"}){
+//     console.log(`First Name: ${firstName}`);
+//     console.log(`Last Name: ${lastName}`);
+//     console.log(`Age: ${age}`);
+//     console.log(`Job: ${job}`);
+//    }
+
+//    displayPerson(person1);
+//    displayPerson(person2);
+   
+// nested objects
+
+// const person = {
+//     fullName: "Spongebob",
+//     age: 30,
+//     isStudent: true,
+//     hobbies: ["cooking", "joking", "karate"],
+//     address: {
+//         street: "123 Ocean Ave",
+//         city: "Bikini Bottom",
+//         country: "Int. Water"
+//     }
+// }
+
+// // console.log(person.fullName);
+// // console.log(person.age);
+// // console.log(person.isStudent);
+// // console.log(person.hobbies[2]);
+// // console.log(person.address.street);
+
+// for(const property in person. address){
+//     console.log(person.address[property]);
+// }
+
+// class Address{
+//     constructor(street, city, country){
+//         this.street = street;
+//         this.city = city;
+//         this.country = country;
+//     }
+// }
+
+// class Person{
+//     constructor(name, age, ...address){
+//         this.name = name;
+//         this.age = age;
+//         this.address = new Address(...address);
+//     }
+// }
+
+// const person1 = new Person("Spongebob", 30, "123 Ocean Ave", "Bikini Bottom", "Int. Water");
+
+// const person2 = new Person("Patrick", 34, "456 Rock St", "Bikini Bottom", "Int. Water");
+
+// const person3 = new Person("Sandy", 28, "789 Tree Dome", "Bikini Bottom", "Int. Water");
+
+// console.log(person1.address);
+
+const fruits = [
+    { name: "Apple", color: "Red", calories: 95},
+    { name: "Orange", color: "Orange", calories: 62},
+    { name: "Banana", color: "Yellow", calories: 105},
+    { name: "Grapes", color: "Purple", calories: 62},
+    { name: "Strawberry", color: "Red", calories: 4}
+];
+
+// console.log(fruits[2].calories);
+
+// fruits.push({name: "Blueberry", color: "Blue", calories: 85});
+
+// const fruitNames = fruits.map(fruit => fruit.name);
+// const fruitColors = fruits.map(fruit => fruit.color);
+// const fruitCalories = fruits.map(fruit => fruit.calories);
+
+// console.log(fruitNames);
+// console.log(fruitColors);
+// console.log(fruitCalories);
+
+// const yellowFruits = fruits.filter(fruit => fruit.color === "Yellow");
+
+// const lowCalFruits = fruits.filter(fruit => fruit.calories < 100);
+
+// const highCalFruits = fruits.filter(fruit => fruit.calories >= 100);
+
+// console.log(highCalFruits);
+
+// console.log(lowCalFruits);
+
+// console.log(yellowFruits);
+
+const maxFruit = fruits.reduce((max, fruit) => (fruit.calories > max.calories ? fruit : max), fruits[0]);
+
+const minFruit = fruits.reduce((min, fruit) => (fruit.calories < min.calories ? fruit : min), fruits[0]);
+
+console.log(minFruit);
+
+console.log(maxFruit);
