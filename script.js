@@ -943,3 +943,128 @@
 // newButton.textContent = "Button 5";
 // newButton.classList = "myButton";
 // document.body.appendChild(newButton);
+
+// function walkDog(){
+    
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+
+//             const dogwalked = true;
+
+//             if(!dogwalked){
+//                 reject("Dog refused to walk");
+//                 return;
+//             }
+//             console.log("Walking the dog...");
+//             resolve();
+//         }, 1500);
+//     });
+// }
+
+
+// function cleanKitchen(){
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+
+//             const kitchenCleaned = true;
+
+//             if(!kitchenCleaned){
+//                 reject("Couldn't clean the kitchen");
+//                 return;
+//             }
+//             console.log("Cleaning the kitchen...");
+//             resolve();
+//         }, 2500);
+//     });
+// }
+
+// function takeOutTrash(){
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+
+//             const trashTakenOut = true;
+
+//             if(!trashTakenOut){
+//                 reject("Trash bin is full");
+//                 return;
+//             }
+//             console.log("Taking out the trash...");
+//             resolve();
+//         }, 500);
+//     });
+// }
+
+// async function doChores(){
+
+//     try {
+//     const walkDogResult = await walkDog();
+//     console.log(walkDogResult);
+
+//     const cleanKitchenResult = await cleanKitchen();
+//     console.log(cleanKitchenResult);
+
+//     const takeOutTrashResult = await takeOutTrash();
+//     console.log(takeOutTrashResult);
+
+//     console.log("All chores done!");
+// }
+//     catch (error){
+//         console.error(error);
+//     }
+// }
+
+// doChores();
+
+// const jsonNames = `["Spongebob", "Patrick", "Squidward", "Sandy"]`;
+
+// const parsedData = JSON.parse(jsonNames);
+
+// console.log(parsedData);
+
+// fetch("people.json")
+// .then(response => response.json())
+// .then(value => console.log(value))
+
+// fetch("https://pokeapi.co/api/v2/pokemon/snorlax")
+//     .then(response => response.json())
+
+//     if (!response.ok) {
+//         throw new Error("Network response was not ok");
+//     }
+//     return response.json();
+// })
+// .then(data => console.log(data))    
+// .catch(error => console.error(error));
+
+document.getElementById("fetchButton").addEventListener("click", fetchData);
+
+async function fetchData() {
+    try {
+        const pokemonName = document
+            .getElementById("pokemonName")
+            .value
+            .toLowerCase()
+            .trim();
+
+        if (!pokemonName) return;
+
+        const response = await fetch(
+            `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
+        );
+
+        if (!response.ok) {
+            throw new Error("Pokémoni ei leitud");
+        }
+
+        const data = await response.json();
+
+        const sprite = document.getElementById("pokemonSprite");
+        sprite.src = data.sprites.front_default;
+        sprite.style.display = "block";
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+

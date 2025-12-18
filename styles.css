@@ -443,4 +443,8 @@ padding: 14px 16px 16px;
   width: 100px;
 } */
 
+#pokemonSprite {
+  width: 300px;  
+  height: auto;
+}
 
